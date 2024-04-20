@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CustomConfirmAlert from "../utils/confirmDialog";
 import { showErrorToast } from "../utils/toasNotif";
 import data from "../data";
 
 export const useQuiz = () => {
-  const navigate = useNavigate();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState(new Array(data.length).fill(null));
     const [quizCompleted, setQuizCompleted] = useState(false);
@@ -23,7 +21,6 @@ export const useQuiz = () => {
                     onConfirm: () => {
                         setQuizCompleted(true);
                         correctAnswerCounter();
-                        navigate("/result");
                     },
                 });
                 confirm.submit();
