@@ -11,8 +11,6 @@ body {
 }
 .quizContainer {
     width: 500px;
-    max-height: 100%;
-    overflow-y: none;
     position: absolute;
     top: 40%;
     left: 50%;
@@ -32,6 +30,9 @@ body {
     padding-bottom: 10px;
     border-bottom: 1px #000 solid;
 }
+.question {
+    font-weight: 600;
+}
 .answersContainer {
     display: flex;
     flex-direction: column;
@@ -42,6 +43,15 @@ body {
     border: 1px grey solid;
     border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
+}
+.answer:hover {
+    background-color: #f4f4f4;
+}
+
+.answer.selected {
+    background-color: #d8c7ff;
+    border-color: #19006c;
 }
 .btnContainer {
     margin-top: 10px;
@@ -58,7 +68,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: .5s;
+    transition: 0.5s;
 }
 .nextBtn:hover,
 .prevBtn:hover {
@@ -69,4 +79,40 @@ body {
 .progress {
     font-size: 12px;
     text-align: center;
+}
+.resultsContainer {
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+.resulttitle {
+    padding-bottom: 10px;
+    border-bottom: 1px #000 solid;
+    text-align: center;
+}
+.resultinfo {
+    border-bottom: 1px #000 solid;
+    padding-bottom: 10px;
+}
+.answer.correct {
+    background-color: #c8e6c9; /* green for correct answers */
+}
+
+.answer.incorrect {
+    background-color: #ffcdd2; /* pale red for incorrect answers */
+}
+.correctanswer {
+    text-align: right;
+    margin-right: 10px;
 }

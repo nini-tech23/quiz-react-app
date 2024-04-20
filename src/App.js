@@ -1,10 +1,16 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import QuizPage from "./pages/QuizPage";
-const App = () => {
-    return (
-        <div>
-            <QuizPage />
-        </div>
-    );
-};
+import ResultPage from "./pages/ResultPage";
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <QuizPage />,
+    },
+    {
+        path: "/result",
+        element: <ResultPage />,
+    }
+])
+const App = () => <RouterProvider router={router}/>
 
 export default App;
