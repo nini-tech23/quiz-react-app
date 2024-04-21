@@ -5,17 +5,220 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-body {
+
+:root {
     height: 100vh;
     background-image: linear-gradient(#d8c7ff, #19006c);
 }
+.glass-card {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light white border for a subtle outline */
+    padding: 20px 50px;
+    width: 80%;
+    margin: 5% auto;
+    color: #f4f4f4;
+}
+
+/* --------------Main container-------------- */
+.mainheader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px #f4f4f4 solid;
+}
+/* logo part */
+.logocontainer {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.logo {
+    width: 50px;
+}
+.logocontainer h1 {
+    margin-left: 5%;
+    font-size: 30px;
+    color: #19006c;
+    text-decoration: none;
+}
+/* nav container */
+.navcontainer {
+    display: flex;
+    gap: 50px;
+}
+.navitem {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+    transition: ease-in-out;
+}
+
+.navitem::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #19006c;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.navitem:hover::after {
+    width: 100%;
+}
+.navitem:hover {
+    color: #19006c;
+}
+/* login part */
+.logincontainer {
+    display: flex;
+    gap: 20px;
+}
+.login,
+.signup {
+    padding: 8px;
+    width: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.5s;
+}
+.signup {
+    background-color: #19006c;
+    border: none;
+}
+
+.login {
+    background-color: transparent;
+    border: 1px #19006c solid;
+    color: #19006c;
+}
+.login:hover {
+    background-color: #19006c;
+    color: #fff;
+    border: none;
+}
+
+/* --------------Homepage-------------- */
+.homepage {
+    display: flex;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    border-bottom: 1px #f4f4f4 solid;
+}
+/* cta  */
+.cta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cta button {
+    padding: 8px;
+    width: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #19006c;
+    border: none;
+    outline: none;
+}
+.cta button:hover {
+    background-color: #fff;
+    color: #19006c;
+    border: 1px #19006c solid;
+}
+.cta h1 {
+    font-weight: 600;
+    color: #19006c;
+}
+/* topics */
+.topics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.topics h2 {
+    font-weight: 500;
+}
+.topicscontainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.topic {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #f4f4f4;
+    cursor: pointer;
+}
+.topic p {
+    font-size: 12px;
+}
+.topicicon {
+    font-size: 40px;
+    color: #301a7b;
+}
+/* --------------Footer--------------*/
+.footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.footericons {
+    display: flex;
+    gap: 20px;
+}
+.footericon {
+    color: #f4f4f4;
+    font-size: 20px;
+}
+.footericon:hover {
+    color: #19006c;
+}
+.footernavitem {
+    text-decoration: none;
+    color: #f4f4f4;
+    font-weight: 500;
+    font-size: 16px;
+    transition: ease-in-out;
+}
+.footernavitem:hover {
+    color: #19006c;
+}
+.copyright {
+    color: #f4f4f4;
+    font-size: 12px;
+}
+
+/* --------------Quiz component--------------*/
 .quizContainer {
     width: 500px;
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -46,13 +249,22 @@ body {
     cursor: pointer;
 }
 .answer:hover {
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .answer.selected {
     background-color: #d8c7ff;
     border-color: #19006c;
 }
+.answer.correct {
+    background-color: #c8e6c9; /* green for correct answers */
+}
+
+.answer.incorrect {
+    background-color: #ffcdd2; /* pale red for incorrect answers */
+}
+
+/* --------------QuizPage-------------- */
 .btnContainer {
     margin-top: 10px;
     display: flex;
@@ -80,6 +292,8 @@ body {
     font-size: 12px;
     text-align: center;
 }
+
+/* --------------ResultsPage-------------- */
 .resultsContainer {
     width: 80%;
     height: 100%;
@@ -104,13 +318,6 @@ body {
 .resultinfo {
     border-bottom: 1px #000 solid;
     padding-bottom: 10px;
-}
-.answer.correct {
-    background-color: #c8e6c9; /* green for correct answers */
-}
-
-.answer.incorrect {
-    background-color: #ffcdd2; /* pale red for incorrect answers */
 }
 .correctanswer {
     text-align: right;
