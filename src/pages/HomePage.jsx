@@ -1,5 +1,5 @@
-import Topics from "../components/Topics";
-import Cta from '../components/Cta';
+import Topics from "../components/common/Topics";
+import Cta from '../components/common/Cta';
 const HomePage = () => {
   return (
     <div className="homepage">

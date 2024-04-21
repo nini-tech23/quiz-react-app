@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
-import MainHeader from "./MainHeader";
-import Footer from "./Footer";
+import MainHeader from "./common/MainHeader";
+import Footer from "./common/Footer";
 const RootLayout = () => {
     return (
-        <div className="glass-card">
+        <div className="homepage-card">
             <MainHeader />
             <Outlet />
             <Footer />

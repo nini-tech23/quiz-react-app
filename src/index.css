@@ -10,7 +10,7 @@
     height: 100vh;
     background-image: linear-gradient(#d8c7ff, #19006c);
 }
-.glass-card {
+.homepage-card {
     background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
     border-radius: 20px; /* Rounded corners */
     backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
@@ -23,7 +23,7 @@
 }
 
 /* --------------Main container-------------- */
-.mainheader {
+.main-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     border-bottom: 1px #f4f4f4 solid;
 }
 /* logo part */
-.logocontainer {
+.logo-container {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -40,18 +40,18 @@
 .logo {
     width: 50px;
 }
-.logocontainer h1 {
+.logo-container h1 {
     margin-left: 5%;
     font-size: 30px;
     color: #19006c;
     text-decoration: none;
 }
 /* nav container */
-.navcontainer {
+.nav-container {
     display: flex;
     gap: 50px;
 }
-.navitem {
+.nav-item {
     text-decoration: none;
     font-weight: 500;
     font-size: 20px;
@@ -59,7 +59,7 @@
     transition: ease-in-out;
 }
 
-.navitem::after {
+.nav-item::after {
     content: "";
     width: 0%;
     height: 2px;
@@ -68,19 +68,19 @@
     margin: auto;
     transition: 0.5s;
 }
-.navitem:hover::after {
+.nav-item:hover::after {
     width: 100%;
 }
-.navitem:hover {
+.nav-item:hover {
     color: #19006c;
 }
 /* login part */
-.logincontainer {
+.login-container {
     display: flex;
     gap: 20px;
 }
-.login,
-.signup {
+.login-btn,
+.signup-btn {
     padding: 8px;
     width: 100px;
     border-radius: 20px;
@@ -88,17 +88,17 @@
     color: #fff;
     transition: 0.5s;
 }
-.signup {
+.signup-btn {
     background-color: #19006c;
     border: none;
 }
 
-.login {
+.login-btn {
     background-color: transparent;
     border: 1px #19006c solid;
     color: #19006c;
 }
-.login:hover {
+.login-btn:hover {
     background-color: #19006c;
     color: #fff;
     border: none;
@@ -175,6 +175,10 @@
 .topicicon {
     font-size: 40px;
     color: #301a7b;
+    transition: 0.3s;
+}
+.topicicon:hover {
+    color: #f4f4f4;
 }
 /* --------------Footer--------------*/
 .footer {
@@ -184,34 +188,180 @@
     align-items: center;
     gap: 5px;
 }
-.footericons {
+.footer-icons {
     display: flex;
     gap: 20px;
 }
-.footericon {
+.footer-icon {
     color: #f4f4f4;
     font-size: 20px;
 }
-.footericon:hover {
+.footer-icon:hover {
     color: #19006c;
 }
-.footernavitem {
+.footer-nav-item {
     text-decoration: none;
     color: #f4f4f4;
     font-weight: 500;
     font-size: 16px;
     transition: ease-in-out;
 }
-.footernavitem:hover {
+.footer-nav-item:hover {
     color: #19006c;
 }
-.copyright {
+.copy-right {
     color: #f4f4f4;
     font-size: 12px;
 }
+/* --------------Login page--------------*/
+
+.login-card {
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 80%;
+    height: 80vh;
+    margin: 5% auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* login component */
+.login {
+    width: 50%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.login h1,
+.signupform-card h1 {
+    color: #19006c;
+}
+.login-form,
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.input-icon-container {
+    position: relative;
+    display:flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.login-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 15px; /* Make padding to prevent text overlap with icon */
+    width: 250px; /* Or any suitable width */
+}
+.lined-text {
+    width: 296px;
+    color: #19006c;
+    overflow: hidden; /* Ensures content does not overflow the boundaries */
+    text-align: center; /* Centers the text */
+    position: relative;
+    white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+.lined-text:before,
+.lined-text:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 46%;
+    height: 0.5px;
+    background-color: #19006c; /* Set the color of the line here */
+    transform: translateY(-50%);
+}
+
+.lined-text:before {
+    left: 0;
+}
+
+.lined-text:after {
+    right: 0;
+}
+
+.google-login-btn {
+    background-color: #fff;
+    border: none;
+    color: #19006c;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    width: 296px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* signup component being used in the login page*/
+.signup {
+    width: 50%;
+    background-color: #19006c;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+}
+.signup-link {
+    width: 172px;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #fff;
+    color: #19006c;
+    font-weight: 500;
+    outline: none;
+}
+.signup-link:hover {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.signupform-card {
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 35%;
+    height: 80vh;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
 
 /* --------------Quiz component--------------*/
-.quizContainer {
+.quiz-container {
     width: 500px;
     position: absolute;
     top: 40%;
@@ -236,7 +386,7 @@
 .question {
     font-weight: 600;
 }
-.answersContainer {
+.answers-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -265,14 +415,14 @@
 }
 
 /* --------------QuizPage-------------- */
-.btnContainer {
+.btn-container {
     margin-top: 10px;
     display: flex;
     justify-content: center;
     gap: 30px;
 }
-.nextBtn,
-.prevBtn {
+.next-btn,
+.prev-btn {
     padding: 10px;
     width: 150px;
     background-color: #19006c;
@@ -288,13 +438,13 @@
     color: #19006c;
     outline: 1px solid #19006c;
 }
-.progress {
+.quiz-progress {
     font-size: 12px;
     text-align: center;
 }
 
 /* --------------ResultsPage-------------- */
-.resultsContainer {
+.results-container {
     width: 80%;
     height: 100%;
     position: absolute;
@@ -310,16 +460,16 @@
     gap: 10px;
     overflow-y: auto;
 }
-.resulttitle {
+.result-title {
     padding-bottom: 10px;
     border-bottom: 1px #000 solid;
     text-align: center;
 }
-.resultinfo {
+.result-info {
     border-bottom: 1px #000 solid;
     padding-bottom: 10px;
 }
-.correctanswer {
+.correct-answer {
     text-align: right;
     margin-right: 10px;
 }

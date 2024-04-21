@@ -1,4 +1,4 @@
-const Quiz = ({ question, option1, option2, option3, option4, currentQuestionNumber, selectedAnswer, onAnswerSelected, quizCompleted, isCorrect }) => {
+const Question = ({ question, option1, option2, option3, option4, currentQuestionNumber, selectedAnswer, onAnswerSelected, quizCompleted, isCorrect }) => {
   const getAnswerClass = (optionNumber) => {
     if (!quizCompleted) {
       return selectedAnswer === optionNumber ? 'answer selected' : 'answer';
@@ -13,7 +13,7 @@ const Quiz = ({ question, option1, option2, option3, option4, currentQuestionNum
         <span>{currentQuestionNumber}. </span>
         {question}
       </p>
-      <div className={"answersContainer"}>
+      <div className={"answers-container"}>
         <div className={getAnswerClass(1)} onClick={()=>onAnswerSelected(1)}>a. {option1}</div>
         <div className={getAnswerClass(2)} onClick={()=>onAnswerSelected(2)}>b. {option2}</div>
         <div className={getAnswerClass(3)} onClick={()=>onAnswerSelected(3)}>c. {option3}</div>
@@ -22,4 +22,4 @@ const Quiz = ({ question, option1, option2, option3, option4, currentQuestionNum
     </>
   );
 };
-export default Quiz;
+export default Question;

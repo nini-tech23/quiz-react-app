@@ -5,51 +5,51 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 const Footer = () => {
     return (
         <div className="footer">
-            <div className="footericons">
+            <div className="footer-icons">
                 <Link
                     to=""
-                    className="footericon">
+                    className="footer-icon">
                     <BiLogoInstagramAlt />
                 </Link>
                 <Link
                     to=""
-                    className="footericon">
+                    className="footer-icon">
                     <BsFacebook />
                 </Link>
                 <Link
                     to=""
-                    className="footericon">
+                    className="footer-icon">
                     <AiFillTwitterCircle />
                 </Link>
             </div>
-            <div className="navcontainer">
+            <div className="nav-container">
                 <Link
                     to="/"
-                    className="footernavitem">
+                    className="footer-nav-item">
                     Home
                 </Link>
                 <Link
-                    to="/quiz"
-                    className="footernavitem">
+                    to="/library"
+                    className="footer-nav-item">
                     Library
                 </Link>
                 <Link
-                    to="/quiz"
-                    className="footernavitem">
+                    to="/about"
+                    className="footer-nav-item">
                     About
                 </Link>
                 <Link
-                    to="/quiz"
-                    className="footernavitem">
+                    to="/terms"
+                    className="footer-nav-item">
                     Terms
                 </Link>
                 <Link
-                    to="/quiz"
-                    className="footernavitem">
+                    to="/privacy"
+                    className="footer-nav-item">
                     Privacy Policy
                 </Link>
             </div>
-            <p className="copyright">© 2022 Quizopolis. All Rights Reserved.</p>
+            <p className="copy-right">© 2024 Quizopolis. All Rights Reserved.</p>
         </div>
     );
 };
