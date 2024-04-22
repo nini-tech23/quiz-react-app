@@ -1,13 +1,15 @@
 import {userAPI} from "../API";
 import { useState } from "react";
 import { showErrorToast, showSuccessToast } from "../utils/toasNotif";
-const useSignUp = () => {
+import { useNavigate } from "react-router-dom";
+const useUserRegist = () => {
     const [formData, setFormData] = useState({
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
     });
+    const navigate = useNavigate();
     const textChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -48,7 +50,7 @@ const useSignUp = () => {
     }
     
     
-    const submitHandler = async (e) => {
+    const signupHandler = async (e) => {
         e.preventDefault();
         if (!validateEmail(formData.email)) {
             showErrorToast('Invalid email format');
@@ -79,8 +81,17 @@ const useSignUp = () => {
                 email: formData.email,
                 password: formData.password,
             });
-            if (response.status === 201) {
+            if (response.status === 200) {
+                setFormData({
+                    username: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                })
                 showSuccessToast("Registered successfully");
+                setTimeout(()=>{
+                    navigate("/login");
+                }, 3000)
             } else {
                 showErrorToast(response.data.message);
                 throw new Error(response.data.message || "Failed to register");
@@ -89,7 +100,7 @@ const useSignUp = () => {
             showErrorToast(error.response?.data?.message || "Failed to register");
         }
     };
-    return { formData, textChangeHandler, submitHandler };
+    return { formData, textChangeHandler, signupHandler };
 };
 
-export default useSignUp;
+export default useUserRegist;

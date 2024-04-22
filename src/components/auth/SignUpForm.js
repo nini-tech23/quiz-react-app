@@ -4,16 +4,16 @@ import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { BsCheck2Circle } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import useSignUp from '../../hooks/useSignUp';
+import useUserRegist from '../../hooks/useUserRegist';
 import { ToastContainer } from 'react-toastify';
 const SignUpForm = () => {
-    const {textChangeHandler, formData, submitHandler} = useSignUp();
+    const {textChangeHandler, formData, signupHandler} = useUserRegist();
     return (
         <>
             <ToastContainer/>
             <div className="signupform-card">
                 <h1>Create New Account</h1>
-                <form className='signup-form' onSubmit={(e)=>submitHandler(e)}>
+                <form className='signup-form' onSubmit={(e)=>signupHandler(e)}>
                     <div className="input-icon-container">
                         <AiOutlineMail className="input-icon" />
                         <input
@@ -22,6 +22,7 @@ const SignUpForm = () => {
                             className="login-input"
                             onChange={textChangeHandler}
                             name='email'
+                            value={formData.email}
                             required
                         />
                     </div>
