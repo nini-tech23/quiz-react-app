@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { UserProvider } from "./UserContext";
 import HomePage from "./pages/HomePage";
 import QuizPage from "./pages/QuizPage";
 import RootLayout from "./components/RootLayout";
@@ -35,6 +34,6 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
     },
 ])
-const App = () => <UserProvider><RouterProvider router={router}/></UserProvider>
+const App = () => <RouterProvider router={router}/>
 
 export default App;
