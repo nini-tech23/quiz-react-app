@@ -80,28 +80,49 @@
     gap: 20px;
 }
 .login-btn,
-.signup-btn {
+.signup-btn,
+.logout-btn {
     padding: 8px;
     width: 100px;
     border-radius: 20px;
     cursor: pointer;
     color: #fff;
     transition: 0.5s;
+    text-decoration: none;
+    text-align: center;
 }
 .signup-btn {
     background-color: #19006c;
     border: none;
 }
 
-.login-btn {
+.login-btn,
+.logout-btn {
     background-color: transparent;
     border: 1px #19006c solid;
     color: #19006c;
 }
-.login-btn:hover {
+.login-btn:hover,
+.logout-btn:hover {
     background-color: #19006c;
     color: #fff;
     border: none;
+}
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+.user-icon {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    text-decoration: none;
+    color: #19006c;
 }
 
 /* --------------Homepage-------------- */
@@ -251,7 +272,7 @@
 }
 .input-icon-container {
     position: relative;
-    display:flex;
+    display: flex;
     align-items: center;
     padding: 15px;
     background-color: #fff;

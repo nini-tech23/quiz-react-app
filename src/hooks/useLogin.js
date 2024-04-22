@@ -19,11 +19,11 @@ const useUserRegist = () => {
                 password: formData.password
             });
             if (response.status===200){
-                setFormData({username: '', password: ''});
+                localStorage.setItem('token', response.data.token);
                 showSuccessToast(response.data.message);
                 setTimeout(() => {
                     navigate("/")
-                }, 3000);
+                }, 2000);
             }else{
                 showErrorToast(response.data.message);
             }
