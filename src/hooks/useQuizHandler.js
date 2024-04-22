@@ -1,18 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import he from 'he';
 import CustomConfirmAlert from "../utils/confirmDialog";
 import { showErrorToast } from "../utils/toasNotif";
-import data from "../data";
+import { quizAPI } from "../API";
+import shuffleArray from "../utils/shuffleArray";
 
 export const useQuiz = () => {
+    const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswers, setSelectedAnswers] = useState(new Array(data.length).fill(null));
+    const [selectedAnswers, setSelectedAnswers] = useState([]);
     const [quizCompleted, setQuizCompleted] = useState(false);
-    const [correctAnswersCheck, setCorrectAnswersCheck] = useState(new Array(data.length).fill(false));
+    const [correctAnswersCheck, setCorrectAnswersCheck] = useState([]);
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
 
+    // fetch quiz data here
+    useEffect(()=>{
+        const fetchQuizData = async () => {
+            try {
+                const response = await quizAPI.get("/api.php?amount=10&type=multiple");
+                const fetchedData = response.data.results.map(question=>({
+                    ...question,
+                    question: he.decode(question.question),
+                    correct_answer: he.decode(question.correct_answer),
+                    incorrect_answers: question.incorrect_answers.map(answer=>he.decode(answer)),
+                    options: shuffleArray([...question.incorrect_answers.map(answer=>he.decode(answer)), he.decode(question.correct_answer)])
+                }))
+                setData(fetchedData);
+
+                setSelectedAnswers(new Array(response.data.results.length).fill(null));
+                setCorrectAnswersCheck(new Array(response.data.results.length).fill(false));
+            } catch (error) {
+                console.log('Failed to fetch quiz data:', error);
+            }
+        };
+        fetchQuizData();
+    }, []);
     const handleNextQuestion = () => {
         if (selectedAnswers[currentQuestionIndex] !== null) {
-            if (currentQuestionIndex < data.length - 1) {
+            if (currentQuestionIndex < data?.length - 1) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
             } else {
                 const confirm = CustomConfirmAlert({
@@ -33,48 +58,31 @@ export const useQuiz = () => {
     const handlePrevQuestionIndex = () => {
         if (currentQuestionIndex > 0) {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
-        } else {
-            console.log("The very first question!");
         }
     };
 
     const handleSelectedAnswer = (answer) => {
-        const newSelectedAnswers = [...selectedAnswers];
-        newSelectedAnswers[currentQuestionIndex] = answer;
-        setSelectedAnswers(newSelectedAnswers);
+        setSelectedAnswers(prevAnswers => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[currentQuestionIndex] = answer;
+            return newAnswers;
+        });
     };
 
     const correctAnswerCounter = () => {
         let newTotalCorrectAnswers = 0;
         const newCorrectAnswersCheck = data.map((item, index) => {
-            const isCorrect = item.ans === selectedAnswers[index];
+            const isCorrect = item.correct_answer === selectedAnswers[index];
             if (isCorrect) newTotalCorrectAnswers++;
             return isCorrect;
         });
         setCorrectAnswersCheck(newCorrectAnswersCheck);
         setTotalCorrectAnswers(newTotalCorrectAnswers);
     };
-    const correctAnswerShower = (ans) => {
-        switch (ans) {
-            case 1:
-                return "a";
-            case 2:
-                return "b";
-            case 3:
-                return "c";
-            case 4:
-                return "d";
-            default:
-                return "a";
-        }
-    };
 
-    const currentData = data[currentQuestionIndex];
-    const totalQuestions = data.length;
     return {
-        currentData,
+        data,
         currentQuestionIndex,
-        totalQuestions,
         quizCompleted,
         handleNextQuestion,
         handlePrevQuestionIndex,
@@ -82,6 +90,6 @@ export const useQuiz = () => {
         selectedAnswers,
         totalCorrectAnswers,
         correctAnswersCheck,
-        correctAnswerShower,
     };
 };
+

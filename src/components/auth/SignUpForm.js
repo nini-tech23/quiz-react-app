@@ -4,42 +4,59 @@ import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { BsCheck2Circle } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import useSignUp from '../../hooks/useSignUp';
 const SignUpForm = () => {
+    const {textChangeHandler, formData, submitHandler} = useSignUp();
     return (
         <div className="signupform-card">
             <h1>Create New Account</h1>
-            <form className='signup-form'>
+            <form className='signup-form' onSubmit={(e)=>submitHandler(e)}>
                 <div className="input-icon-container">
-                    <AiOutlineMail classname="input-icon" />
+                    <AiOutlineMail className="input-icon" />
                     <input
                         type="text"
                         placeholder="Email"
                         className="login-input"
+                        onChange={textChangeHandler}
+                        name='email'
+                        required
                     />
                 </div>
                 <div className="input-icon-container">
-                    <AiOutlineUser classname="input-icon" />
+                    <AiOutlineUser className="input-icon" />
                     <input
                         type="text"
                         placeholder="Username"
                         className="login-input"
+                        onChange={textChangeHandler}
+                        name='username'
+                        value={formData.username}
+                        required
                     />
                 </div>
                 <div className="input-icon-container">
-                    <RiLockPasswordLine classname="input-icon" />
+                    <RiLockPasswordLine className="input-icon" />
                     <input
                         type="password"
                         placeholder="Password"
                         className="login-input"
+                        onChange={textChangeHandler}
+                        name='password'
+                        value={formData.password}
+                        required
                     />
                 </div>
                 <div className="input-icon-container">
-                        <BsCheck2Circle classname="input-icon" />
-                        <input
-                            type="password"
-                            placeholder="Confirm Password"
-                            className="login-input"
-                        />
+                    <BsCheck2Circle className="input-icon" />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        className="login-input"
+                        onChange={textChangeHandler}
+                        value={formData.confirmPassword}
+                        name='confirmPassword'
+                        required
+                    />
                 </div>
                 <button type="submit" className='signup-btn'>Sign Up</button>
             </form>

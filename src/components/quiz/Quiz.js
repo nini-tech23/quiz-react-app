@@ -1,55 +1,48 @@
 import { ToastContainer } from "react-toastify";
 import Question from "./Question";
 import { useQuiz } from "../../hooks/useQuizHandler";
-import data from "../../data";
 const Quiz = () => {
-    const { currentQuestionIndex, currentData, totalQuestions, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, correctAnswerShower} = useQuiz();
+    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz();
+    if (!data ||!data.length) return <div>Loading...</div>
+
     return (
         <>
-            <ToastContainer/>
+            <ToastContainer />
             {quizCompleted ? (
                 <div className="results-container">
-                <h1 className="result-title">Quiz Result</h1>
-                <div className="result-info">
-                    <p>
-                        <b style={{ fontWeight: "600" }}>Total Correct Anwers: </b>
-                        {totalCorrectAnswers}
-                    </p>
-                    <p>
-                        <b style={{ fontWeight: "600" }}>Total InCorrect Anwers: </b>
-                        {data.length - totalCorrectAnswers}
-                    </p>
-                </div>
-                {data.map((item, index) => (
-                    <>
-                        <Question
-                            key={item.id}
-                            question={item.question}
-                            option1={item.option1}
-                            option2={item.option2}
-                            option3={item.option3}
-                            option4={item.option4}
-                            currentQuestionNumber={index + 1}
-                            selectedAnswer={selectedAnswers[index]}
-                            quizCompleted={quizCompleted}
-                            isCorrect={correctAnswersCheck[index]}
-                        />
-                        <p className="correct-answer">
-                            <b style={{ fontWeight: "600" }}>Correct Answer: </b>
-                            {correctAnswerShower(item.ans)}
+                    <h1 className="result-title">Quiz Result</h1>
+                    <div className="result-info">
+                        <p>
+                            <b style={{ fontWeight: "600" }}>Total Correct Anwers: </b>
+                            {totalCorrectAnswers}
                         </p>
-                    </>
-                ))}
-            </div>
+                        <p>
+                            <b style={{ fontWeight: "600" }}>Total InCorrect Anwers: </b>
+                            {data.length - totalCorrectAnswers}
+                        </p>
+                    </div>
+                    {data.map((item, index) => (
+                        <>
+                            <Question
+                                question={item.question}
+                                options= {item.options}
+                                currentQuestionNumber={index + 1}
+                                selectedAnswer={selectedAnswers[index]}
+                                quizCompleted={quizCompleted}
+                                isCorrect={correctAnswersCheck[index]}
+                            />
+                            <p className="correct-answer">
+                                <b style={{ fontWeight: "600" }}>Correct Answer: </b>
+                                {item.correct_answer}
+                            </p>
+                        </>
+                    ))}
+                </div>
             ) : (
                 <div className="quiz-container">
                     <Question
-                        key={currentData.id}
-                        question={currentData.question}
-                        option1={currentData.option1}
-                        option2={currentData.option2}
-                        option3={currentData.option3}
-                        option4={currentData.option4}
+                        question={data[currentQuestionIndex].question}
+                        options={data[currentQuestionIndex].options}
                         currentQuestionNumber={currentQuestionIndex + 1}
                         onAnswerSelected={handleSelectedAnswer}
                         selectedAnswer={selectedAnswers[currentQuestionIndex]}
@@ -59,7 +52,8 @@ const Quiz = () => {
                         <button
                             type="submit"
                             className="prev-btn"
-                            onClick={handlePrevQuestionIndex}>
+                            onClick={handlePrevQuestionIndex}
+                            disabled={currentQuestionIndex === 0}>
                             Previous
                         </button>
                         <button
@@ -70,12 +64,12 @@ const Quiz = () => {
                         </button>
                     </div>
                     <p className="quiz-progress">
-                        {currentQuestionIndex + 1} of {totalQuestions} questions
+                        {currentQuestionIndex + 1} of {data.length} questions
                     </p>
                 </div>
             )}
         </>
-    )
+    );
 };
 
 export default Quiz;

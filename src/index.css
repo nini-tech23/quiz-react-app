@@ -268,7 +268,7 @@
     border: none;
     outline: none;
     background: transparent;
-    padding-left: 15px; /* Make padding to prevent text overlap with icon */
+    padding-left: 20px; /* Make padding to prevent text overlap with icon */
     width: 250px; /* Or any suitable width */
 }
 .lined-text {

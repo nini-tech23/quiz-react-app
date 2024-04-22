@@ -1,7 +1,4 @@
-const QuizListPage = () => {
-  return (
-    <div>QuizListPage</div>
-  )
-}
+import QuizList from "../components/quiz/QuizList";
+const QuizListPage = () => <QuizList />;
 
-export default QuizListPage
+export default QuizListPage;
