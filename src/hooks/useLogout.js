@@ -1,6 +1,6 @@
 const useLogout = () => {
     const tokenHandler = () =>localStorage.getItem('token')
-    const handleLogout = (token) => {
+    const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.reload();
     }

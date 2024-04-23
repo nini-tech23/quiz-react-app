@@ -1,12 +1,10 @@
 import {Link} from 'react-router-dom';
 import {MdAccountCircle} from 'react-icons/md';
+import useLogout from '../../hooks/useLogout';
 import quizletLogo from '../../assets/quizlet-logo.png';
 const MainHeaderLibrary = () => {
-    const token = localStorage.getItem('token')
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        window.location.reload();
-    }
+    const {tokenHandler, handleLogout} = useLogout();
+    const token = tokenHandler();
     return (
     <>
         <div className="main-header-alt">
