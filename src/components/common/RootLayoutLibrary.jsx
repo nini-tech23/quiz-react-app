@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import MainHeaderLibrary from "./common/MainHeaderLibrary";
+import MainHeaderLibrary from "./MainHeaderLibrary";
 const RootLayout = () => {
     return (
         <div className="quiz-list-layout">
