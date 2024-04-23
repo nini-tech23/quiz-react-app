@@ -1,4 +1,4 @@
-import QuizList from "../components/quiz/QuizList";
-const QuizListPage = () => <QuizList />;
+import QuizLists from "../components/quiz/QuizLists";
+const QuizListPage = () => <QuizLists />;
 
 export default QuizListPage;

@@ -5,7 +5,7 @@ import RootLayout from "./components/RootLayout";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import QuizListPage from "./pages/QuizListPage";
-
+import RootLayoutLibrary from './components/RootLayoutLibrary';
 const router = createBrowserRouter([
     {
         path: "/",
@@ -15,10 +15,18 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <HomePage />,
             },
+
+        ],
+    },
+    {
+        path: "/",
+        element: <RootLayoutLibrary />,
+        children: [
             {
                 path: "/library",
-                element: <QuizListPage />,
+                element: <QuizListPage/>,
             },
+
         ],
     },
     {

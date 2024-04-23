@@ -31,6 +31,14 @@
     padding-bottom: 20px;
     border-bottom: 1px #f4f4f4 solid;
 }
+.main-header-alt {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px #19006c solid;
+}
 /* logo part */
 .logo-container {
     display: flex;
@@ -58,6 +66,13 @@
     color: #fff;
     transition: ease-in-out;
 }
+.nav-item-alt {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    color: #19006c;
+    transition: ease-in-out;
+}
 
 .nav-item::after {
     content: "";
@@ -81,7 +96,8 @@
 }
 .login-link,
 .signup-link,
-.logout-btn {
+.logout-btn,
+.start-quiz-btn {
     padding: 8px;
     width: 100px;
     border-radius: 20px;
@@ -91,13 +107,14 @@
     text-decoration: none;
     text-align: center;
 }
-.signup-link {
+.signup-link,
+.start-quiz-btn {
     background-color: #19006c;
     border: none;
 }
 
 .login-link,
-.logout-btn {
+.logout-btn{
     background-color: transparent;
     border: 1px #19006c solid;
     color: #19006c;
@@ -208,13 +225,15 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    color: #f4f4f4;
 }
+
 .footer-icons {
     display: flex;
     gap: 20px;
 }
 .footer-icon {
-    color: #f4f4f4;
+    color: inherit;
     font-size: 20px;
 }
 .footer-icon:hover {
@@ -222,7 +241,7 @@
 }
 .footer-nav-item {
     text-decoration: none;
-    color: #f4f4f4;
+    color: inherit;
     font-weight: 500;
     font-size: 16px;
     transition: ease-in-out;
@@ -231,7 +250,7 @@
     color: #19006c;
 }
 .copy-right {
-    color: #f4f4f4;
+    color: inherit;
     font-size: 12px;
 }
 /* --------------Login page--------------*/
@@ -495,4 +514,88 @@
 .correct-answer {
     text-align: right;
     margin-right: 10px;
+}
+/* --------------Quizlist Page-------------- */
+/*quizlist page rootlayout*/
+.quiz-list-layout {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light white border for a subtle outline */
+    padding: 20px 50px;
+    margin: 3% auto;
+}
+.quiz-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.quiz-list h1 {
+    text-align: center;
+}
+.quiz-list-card-container {
+    width: 80;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+/* quizcard */
+.quiz-list-card {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light white border for a subtle outline */
+    padding: 20px 40px;
+    margin: 5% auto;
+    width: 400px;
+    color: #000;
+}
+.quiz-list-card-title {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    color: #19006c;
+    padding-bottom: 10px;
+    border-bottom: 1px #301a7b solid;
+    margin-bottom: 10px;
+}
+.quiz-list-card-subcategory{
+    display: flex;
+    gap: 10px;
+}
+.take-quiz-form{
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 20px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light white border for a subtle outline */
+    padding: 20px 40px;
+    margin: 0 auto;
+    width: 700px;
+    color: #000;
+}
+.take-quiz-form label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+     
+.take-quiz-form select, .take-quiz-form input[type="number"] {
+    margin-top: 2px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    width: 95%;
+}
+.start-quiz-btn-container{
+    display: flex;
+    justify-content: center;
 }
