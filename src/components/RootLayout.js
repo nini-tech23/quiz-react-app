@@ -3,7 +3,7 @@ import MainHeader from "./common/MainHeader";
 import Footer from "./common/Footer";
 const RootLayout = () => {
     return (
-        <div className="homepage-card">
+        <div className="main-card">
             <MainHeader />
             <Outlet />
             <Footer />

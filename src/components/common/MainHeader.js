@@ -23,12 +23,12 @@ const MainHeader = () => {
         {token ? (
           <div className="profile-container">
               <Link to='/profile' className='profile-link'><MdAccountCircle className='user-icon'/></Link>
-              <Link to='/' onClick={handleLogout} className='logout-btn'>Logout</Link>
+              <button onClick={handleLogout} className='logout-btn'>Logout</button>
           </div>
         ) : (
           <div className="login-container">
-            <Link to='/login'><button className='login-btn'>Login</button></Link>
-            <Link to='/signup'><button className="signup-btn">Sign Up</button></Link>
+            <Link to='/login'className='login-link'>Login</Link>
+            <Link to='/signup' className="signup-link">Sign Up</Link>
           </div>
         )}
       </div>

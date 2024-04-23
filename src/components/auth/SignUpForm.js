@@ -62,12 +62,12 @@ const SignUpForm = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className='signup-btn'>Sign Up</button>
+                    <button type="submit" className='signup-link'>Sign Up</button>
                 </form>
                 <p className="lined-text">or</p>
-                <button className="google-login-btn"><FcGoogle style={{fontSize: '20px'}}/><p>Sign in with Google Account</p></button>
+                <button className="google-login-btn"><FcGoogle style={{fontSize: '22px'}}/><p>Sign in with Google Account</p></button>
                 <p>Already have an account?</p>
-                <Link to='/login'><button className='login-btn'>Login</button></Link>
+                <Link to='/login' className='login-link'>Login</Link>
             </div>
         </>
         

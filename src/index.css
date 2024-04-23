@@ -10,7 +10,7 @@
     height: 100vh;
     background-image: linear-gradient(#d8c7ff, #19006c);
 }
-.homepage-card {
+.main-card {
     background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
     border-radius: 20px; /* Rounded corners */
     backdrop-filter: blur(10px); /* Blur effect for the frosted glass look */
@@ -22,7 +22,7 @@
     color: #f4f4f4;
 }
 
-/* --------------Main container-------------- */
+/* --------------Main header -------------- */
 .main-header {
     width: 100%;
     display: flex;
@@ -79,8 +79,8 @@
     display: flex;
     gap: 20px;
 }
-.login-btn,
-.signup-btn,
+.login-link,
+.signup-link,
 .logout-btn {
     padding: 8px;
     width: 100px;
@@ -91,18 +91,18 @@
     text-decoration: none;
     text-align: center;
 }
-.signup-btn {
+.signup-link {
     background-color: #19006c;
     border: none;
 }
 
-.login-btn,
+.login-link,
 .logout-btn {
     background-color: transparent;
     border: 1px #19006c solid;
     color: #19006c;
 }
-.login-btn:hover,
+.login-link:hover,
 .logout-btn:hover {
     background-color: #19006c;
     color: #fff;
@@ -350,7 +350,7 @@
     gap: 15px;
     color: #fff;
 }
-.signup-link {
+.signup-link-2 {
     width: 172px;
     padding: 10px;
     border-radius: 20px;
@@ -359,8 +359,10 @@
     color: #19006c;
     font-weight: 500;
     outline: none;
+    text-decoration: none;
+    text-align: center;
 }
-.signup-link:hover {
+.signup-link-2:hover {
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;

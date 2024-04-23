@@ -39,10 +39,10 @@ const LoginForm = () => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="signup-btn">Login</button>
+                        <button type="submit" className="signup-link">Login</button>
                     </form>
                     <p className="lined-text">or</p>
-                    <button className="google-login-btn" type="submit"><FcGoogle style={{fontSize: '20px'}}/><p>Sign in with Google Account</p></button>
+                    <button className="google-login-btn" type="submit"><FcGoogle style={{fontSize: '22px'}}/><p>Sign in with Google Account</p></button>
                 </div>
                 <SignUpLink/>
             </div>
