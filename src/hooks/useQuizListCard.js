@@ -3,6 +3,7 @@ import { quizAPI } from "../API";
 
 const useQuizListCard = () => {
     const [numQuesofCat, setNumQuesofCat] = useState({});
+    
 
     const categoryNameHandler = (category) => {
         if (category.indexOf(":") !== -1) {
@@ -24,7 +25,7 @@ const useQuizListCard = () => {
                         const formattedData = Object.keys(response.data.categories).reduce((acc, key) => {
                             acc[key] = response.data.categories[key].total_num_of_questions;
                             return acc;
-                        }, {});
+                        }, []);
                         setNumQuesofCat(formattedData);
                         sessionStorage.setItem('numQuesofCat', JSON.stringify(formattedData));
                     } else {

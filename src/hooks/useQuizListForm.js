@@ -7,7 +7,7 @@ const useQuizListForm = () => {
     const [difficulty, setDifficulty] = useState("easy");
     const [questionType, setQuestionType] = useState("multiple");
     const [numQuestions, setNumQuestions] = useState(10);
-    const [category, setCategory] = useState("General Knowledge");
+    const [category, setCategory] = useState(9);
     const handleChange = (event) => {
         const { name, value } = event.target;
         if (name === "difficulty") {

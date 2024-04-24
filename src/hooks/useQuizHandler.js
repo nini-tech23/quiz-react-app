@@ -5,14 +5,13 @@ import { showErrorToast } from "../utils/toasNotif";
 import { quizAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
 
-export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = '' }) => {
+export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = "" }) => {
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [correctAnswersCheck, setCorrectAnswersCheck] = useState([]);
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
-
     // fetch quiz data here
     useEffect(() => {
         const fetchQuizData = async () => {
