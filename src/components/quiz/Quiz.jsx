@@ -1,8 +1,11 @@
 import { ToastContainer } from "react-toastify";
 import Question from "./Question";
 import { useQuiz } from "../../hooks/useQuizHandler";
+import { useLocation } from "react-router-dom";
 const Quiz = () => {
-    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz();
+    const location = useLocation();
+    const { amount, type, difficulty, categories } = location.state || {};
+    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz({ amount, type, difficulty, categories });
     if (!data ||!data.length) return <div>Loading...</div>
 
     return (

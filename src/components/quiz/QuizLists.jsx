@@ -6,7 +6,6 @@ import useQuizListForm from "../../hooks/useQuizListForm";
 const QuizLists = () => {
     const { categoryMapping } = useQuizList();
     const { handleSubmit, handleChange, difficulty, questionType, numQuestions,} = useQuizListForm();
-
     return (
         <>
             {categoryMapping && (

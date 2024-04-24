@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import he from 'he';
+import he from "he";
 import CustomConfirmAlert from "../utils/confirmDialog";
 import { showErrorToast } from "../utils/toasNotif";
 import { quizAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
 
-export const useQuiz = () => {
+export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categories = [] }) => {
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
@@ -14,27 +14,33 @@ export const useQuiz = () => {
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
 
     // fetch quiz data here
-    useEffect(()=>{
+    useEffect(() => {
         const fetchQuizData = async () => {
             try {
-                const response = await quizAPI.get("/api.php?amount=10&type=multiple");
-                const fetchedData = response.data.results.map(question=>({
+                const params = {
+                    amount,
+                    type,
+                    ...(difficulty && { difficulty }),
+                    ...(categories.length>0 && {category: categories.join()})
+                };
+                const response = await quizAPI.get("/api.php", { params });
+                const fetchedData = response.data.results.map((question) => ({
                     ...question,
                     question: he.decode(question.question),
                     correct_answer: he.decode(question.correct_answer),
-                    incorrect_answers: question.incorrect_answers.map(answer=>he.decode(answer)),
-                    options: shuffleArray([...question.incorrect_answers.map(answer=>he.decode(answer)), he.decode(question.correct_answer)])
-                }))
+                    incorrect_answers: question.incorrect_answers.map((answer) => he.decode(answer)),
+                    options: shuffleArray([...question.incorrect_answers.map((answer) => he.decode(answer)), he.decode(question.correct_answer)]),
+                }));
                 setData(fetchedData);
 
                 setSelectedAnswers(new Array(response.data.results.length).fill(null));
                 setCorrectAnswersCheck(new Array(response.data.results.length).fill(false));
             } catch (error) {
-                console.log('Failed to fetch quiz data:', error);
+                console.log("Failed to fetch quiz data:", error);
             }
         };
         fetchQuizData();
-    }, []);
+    }, [amount, type, difficulty, categories]);
     const handleNextQuestion = () => {
         if (selectedAnswers[currentQuestionIndex] !== null) {
             if (currentQuestionIndex < data?.length - 1) {
@@ -62,7 +68,7 @@ export const useQuiz = () => {
     };
 
     const handleSelectedAnswer = (answer) => {
-        setSelectedAnswers(prevAnswers => {
+        setSelectedAnswers((prevAnswers) => {
             const newAnswers = [...prevAnswers];
             newAnswers[currentQuestionIndex] = answer;
             return newAnswers;
@@ -92,4 +98,3 @@ export const useQuiz = () => {
         correctAnswersCheck,
     };
 };
-

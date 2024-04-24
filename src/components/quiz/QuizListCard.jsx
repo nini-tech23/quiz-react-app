@@ -13,7 +13,7 @@ const QuizListCard = ({mainCategory, categories, onChange}) => {
             <h1 className='quiz-list-card-title'>{Icon}{mainCategory}</h1>
             {categories.map((category, index) => (
                 <div key={index} className="quiz-list-card-subcategory">
-                    <input key={index} id={index} type='checkbox' name='category' value={category.name} onChange={onChange}/>
+                    <input key={index} id={index} type='checkbox' name='category' value={category.id} onChange={onChange}/>
                     <label for={index} >{subcategoryNameHandler(category.name)}</label>
                 </div>
                 

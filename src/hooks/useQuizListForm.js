@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { showErrorToast, showSuccessToast } from "../utils/toasNotif";
-
+import CustomConfirmAlert from "../utils/confirmDialog";
+import { useNavigate } from "react-router-dom";
 const useQuizListForm = () => {
+    const navigate = useNavigate();
     const [difficulty, setDifficulty] = useState("easy");
     const [questionType, setQuestionType] = useState("multiple");
     const [numQuestions, setNumQuestions] = useState(10);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const handleChange = (event) => {
         const { name, value, checked, type } = event.target;
-        if (type ==='checkbox'){
-            if(checked){
+        if (type === "checkbox") {
+            if (checked) {
                 setSelectedCategories([...selectedCategories, value]);
             } else {
-                setSelectedCategories(selectedCategories.filter(category => category !== value));
+                setSelectedCategories(selectedCategories.filter((category) => category !== value));
             }
-        }else{
+        } else {
             if (name === "difficulty") {
                 setDifficulty(value);
             } else if (name === "questionType") {
@@ -26,10 +27,15 @@ const useQuizListForm = () => {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Logic to handle form submission
-        showSuccessToast("Quiz started successfully");
-        console.log({ difficulty, questionType, numQuestions, selectedCategories });
-        // Redirect to quiz page or fetch quiz questions based on these options
+        const confirm = CustomConfirmAlert({
+            title: "Want to take a quiz?",
+            message: `Difficulty: ${difficulty}, Question Type: ${questionType}, Number of Questions: ${numQuestions}, Categories: ${selectedCategories.join(", ")}`,
+            onConfirm: () => {
+                console.log({ difficulty, questionType, numQuestions, selectedCategories });
+                navigate("/quiz", {state: {difficulty: difficulty, type: questionType, amount: numQuestions, categories: selectedCategories}});
+            },
+        });
+        confirm.submit();
     };
 
     return { difficulty, questionType, numQuestions, selectedCategories, handleSubmit, handleChange };
