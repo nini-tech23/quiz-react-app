@@ -7,7 +7,8 @@ const useQuizListForm = () => {
     const [difficulty, setDifficulty] = useState("easy");
     const [questionType, setQuestionType] = useState("multiple");
     const [numQuestions, setNumQuestions] = useState(10);
-    const [category, setCategory] = useState(9);
+    const [category, setCategory] = useState(9); //id for default (general knowledge)
+    const allCategories = Object.values(categoryMapping).flat();
     const handleChange = (event) => {
         const { name, value } = event.target;
         if (name === "difficulty") {
@@ -33,7 +34,7 @@ const useQuizListForm = () => {
         confirm.submit();
     };
 
-    return { categoryMapping, difficulty, questionType, numQuestions, category, handleSubmit, handleChange };
+    return { allCategories, categoryMapping, difficulty, questionType, numQuestions, category, handleSubmit, handleChange };
 };
 
 export default useQuizListForm;

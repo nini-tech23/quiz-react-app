@@ -3,8 +3,7 @@ import QuizListForm from "./quizListForm";
 import useQuizListForm from "../../hooks/useQuizListForm";
 
 const QuizLists = () => {
-    const { handleSubmit, handleChange, categoryMapping, difficulty, questionType, numQuestions, category} = useQuizListForm();
-    const categories = Object.values(categoryMapping).flat();
+    const { handleSubmit, handleChange, allCategories,categoryMapping, difficulty, questionType, numQuestions, category} = useQuizListForm();
     
     return (
         <>
@@ -22,7 +21,7 @@ const QuizLists = () => {
                         difficulty={difficulty}
                         questionType={questionType}
                         numQuestions={numQuestions}
-                        categories={categories}
+                        categories={allCategories}
                         category={category}
                     />
                 </div>
