@@ -1,11 +1,11 @@
 import QuizListCard from "./QuizListCard";
-import useQuizList from "../../hooks/useQuizList";
 import QuizListForm from "./quizListForm";
 import useQuizListForm from "../../hooks/useQuizListForm";
 
 const QuizLists = () => {
-    const { categoryMapping } = useQuizList();
-    const { handleSubmit, handleChange, difficulty, questionType, numQuestions,} = useQuizListForm();
+    const { handleSubmit, handleChange, categoryMapping, difficulty, questionType, numQuestions, category} = useQuizListForm();
+    const categories = Object.values(categoryMapping).flat();
+    
     return (
         <>
             {categoryMapping && (
@@ -15,8 +15,16 @@ const QuizLists = () => {
                         {Object.entries(categoryMapping).map(([key, value]) => (
                             <QuizListCard key={key} mainCategory={key} categories={value} onChange={handleChange}/>
                         ))}
-                    </div>
-                    <QuizListForm onSubmit={handleSubmit} onChange={handleChange} difficulty={difficulty} questionType={questionType} numQuestions={numQuestions}/>
+                    </div>            
+                    <QuizListForm
+                        onSubmit={handleSubmit}
+                        onChange={handleChange}
+                        difficulty={difficulty}
+                        questionType={questionType}
+                        numQuestions={numQuestions}
+                        categories={categories}
+                        category={category}
+                    />
                 </div>
             )}
         </>

@@ -4,8 +4,8 @@ import { useQuiz } from "../../hooks/useQuizHandler";
 import { useLocation } from "react-router-dom";
 const Quiz = () => {
     const location = useLocation();
-    const { amount, type, difficulty, categories } = location.state || {};
-    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz({ amount, type, difficulty, categories });
+    const { amount, type, difficulty, category } = location.state || {};
+    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz({ amount, type, difficulty, category });
     if (!data ||!data.length) return <div>Loading...</div>
 
     return (

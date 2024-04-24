@@ -5,7 +5,7 @@ import { showErrorToast } from "../utils/toasNotif";
 import { quizAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
 
-export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categories = [] }) => {
+export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = '' }) => {
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
@@ -21,7 +21,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
                     amount,
                     type,
                     ...(difficulty && { difficulty }),
-                    ...(categories.length>0 && {category: categories.join()})
+                    ...(category && { category }),
                 };
                 const response = await quizAPI.get("/api.php", { params });
                 const fetchedData = response.data.results.map((question) => ({
@@ -40,7 +40,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
             }
         };
         fetchQuizData();
-    }, [amount, type, difficulty, categories]);
+    }, [amount, type, difficulty, category]);
     const handleNextQuestion = () => {
         if (selectedAnswers[currentQuestionIndex] !== null) {
             if (currentQuestionIndex < data?.length - 1) {

@@ -1,5 +1,5 @@
 import {FaQuestion, FaMusic, FaFlask} from "react-icons/fa";
-import useQuizList from "../../hooks/useQuizList";
+import useQuizListForm from "../../hooks/useQuizListForm";
 const QuizListCard = ({mainCategory, categories, onChange}) => {
     const iconMapping = {
         'General Knowledge': <FaQuestion />,
@@ -7,14 +7,14 @@ const QuizListCard = ({mainCategory, categories, onChange}) => {
         'Science': <FaFlask />
     }
     const Icon = iconMapping[mainCategory] || <FaQuestion />;
-    const {subcategoryNameHandler} = useQuizList();
+    const {categoryNameHandler} = useQuizListForm();
     return (
         <div className='quiz-list-card'>
             <h1 className='quiz-list-card-title'>{Icon}{mainCategory}</h1>
             {categories.map((category, index) => (
                 <div key={index} className="quiz-list-card-subcategory">
                     <input key={index} id={index} type='checkbox' name='category' value={category.id} onChange={onChange}/>
-                    <label for={index} >{subcategoryNameHandler(category.name)}</label>
+                    <label for={index} >{categoryNameHandler(category.name)}</label>
                 </div>
                 
             ))}
