@@ -1,25 +1,20 @@
 import {FaQuestion, FaMusic, FaFlask} from "react-icons/fa";
-const QuizListCard = ({category, subcategories}) => {
+import useQuizList from "../../hooks/useQuizList";
+const QuizListCard = ({mainCategory, categories, onChange}) => {
     const iconMapping = {
         'General Knowledge': <FaQuestion />,
         'Entertainment': <FaMusic />,
         'Science': <FaFlask />
     }
-    const Icon = iconMapping[category] || <FaQuestion />;
-    const subcategoryNameHandler = (subcategory) => {
-        if (subcategory.indexOf(':') !== -1) {
-            return subcategory.slice(subcategory.indexOf(':')+2);
-        } else {
-            return subcategory
-        }
-    }
+    const Icon = iconMapping[mainCategory] || <FaQuestion />;
+    const {subcategoryNameHandler} = useQuizList();
     return (
         <div className='quiz-list-card'>
-            <h1 className='quiz-list-card-title'>{Icon}{category}</h1>
-            {subcategories.map((subcategory, index) => (
+            <h1 className='quiz-list-card-title'>{Icon}{mainCategory}</h1>
+            {categories.map((category, index) => (
                 <div key={index} className="quiz-list-card-subcategory">
-                    <input key={index} id={index} type='checkbox' name='subcategory' value={subcategory.name}/>
-                    <label for={index} >{subcategoryNameHandler(subcategory.name)}</label>
+                    <input key={index} id={index} type='checkbox' name='category' value={category.name} onChange={onChange}/>
+                    <label for={index} >{subcategoryNameHandler(category.name)}</label>
                 </div>
                 
             ))}
