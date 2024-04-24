@@ -2,6 +2,7 @@ import {userAPI} from "../API";
 import { useState } from "react";
 import { showErrorToast, showSuccessToast } from "../utils/toasNotif";
 import { useNavigate } from "react-router-dom";
+import {default as handleLogout } from './useLogout'
 const useUserRegist = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -19,11 +20,16 @@ const useUserRegist = () => {
                 password: formData.password
             });
             if (response.status===200){
-                localStorage.setItem('token', response.data.token);
+                const {token, expiresIn} = response.data;
+                localStorage.setItem('token', token);
                 showSuccessToast(response.data.message);
                 setTimeout(() => {
                     navigate("/")
                 }, 2000);
+                //set timemout for automatic logout when token expires (1hr)
+                setTimeout(()=>{
+                    handleLogout();
+                }, expiresIn * 1000);
             }else{
                 showErrorToast(response.data.message);
             }
