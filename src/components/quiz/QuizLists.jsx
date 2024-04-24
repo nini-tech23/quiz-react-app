@@ -10,10 +10,10 @@ const QuizLists = () => {
         <>
             {categoryMapping && (
                 <div className="quiz-list">
-                    <h1>Select quiz category and take a quiz</h1>
+                    <h1>Take a customized quiz by category</h1>
                     <div className="quiz-list-card-container">
                         {Object.entries(categoryMapping).map(([key, value]) => (
-                            <QuizListCard key={key} mainCategory={key} categories={value} onChange={handleChange}/>
+                            <QuizListCard key={key} mainCategory={key} categories={value}/>
                         ))}
                     </div>            
                     <QuizListForm

@@ -159,7 +159,7 @@
 }
 .cta button {
     padding: 8px;
-    width: 100px;
+    width: 180px;
     border-radius: 20px;
     cursor: pointer;
     color: #fff;
@@ -570,7 +570,7 @@
 }
 .quiz-list-card-subcategory{
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
 }
 .take-quiz-form{
     background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */

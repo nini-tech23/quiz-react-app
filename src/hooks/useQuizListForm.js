@@ -7,19 +7,19 @@ const useQuizListForm = () => {
     const [difficulty, setDifficulty] = useState("easy");
     const [questionType, setQuestionType] = useState("multiple");
     const [numQuestions, setNumQuestions] = useState(10);
-    const [category, setCategory] = useState('General Knowledge');
+    const [category, setCategory] = useState("General Knowledge");
     const handleChange = (event) => {
-        const { name, value} = event.target;
-            if (name === "difficulty") {
-                setDifficulty(value);
-            } else if (name === "questionType") {
-                setQuestionType(value);
-            } else if (name === "numQuestions") {
-                setNumQuestions(value);
-            } else if (name === 'category') {
-                setCategory(value);
-            }
-    }
+        const { name, value } = event.target;
+        if (name === "difficulty") {
+            setDifficulty(value);
+        } else if (name === "questionType") {
+            setQuestionType(value);
+        } else if (name === "numQuestions") {
+            setNumQuestions(value);
+        } else if (name === "category") {
+            setCategory(value);
+        }
+    };
     const handleSubmit = (event) => {
         event.preventDefault();
         const confirm = CustomConfirmAlert({
@@ -27,20 +27,13 @@ const useQuizListForm = () => {
             message: `Difficulty: ${difficulty}, Question Type: ${questionType}, Number of Questions: ${numQuestions}, category: ${category}`,
             onConfirm: () => {
                 console.log({ difficulty, questionType, numQuestions, category });
-                navigate("/quiz", {state: {difficulty: difficulty, type: questionType, amount: numQuestions, category: category}});
+                navigate("/quiz", { state: { difficulty: difficulty, type: questionType, amount: numQuestions, category: category } });
             },
         });
         confirm.submit();
     };
-    const categoryNameHandler = (category) => {
-        if (category.indexOf(':') !== -1) {
-            return category.slice(category.indexOf(':')+2);
-        } else {
-            return category
-        }
-    }
 
-    return { categoryMapping, difficulty, questionType, numQuestions, category, handleSubmit, handleChange, categoryNameHandler };
+    return { categoryMapping, difficulty, questionType, numQuestions, category, handleSubmit, handleChange };
 };
 
 export default useQuizListForm;

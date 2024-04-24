@@ -8,7 +8,7 @@ const Cta = () => {
             Embark on a Journey of Knowledge Exploration with<br/>
             Our Extensive Collection of Interactive Quizzes.
         </p>
-        <Link to="/quiz" className="ctaBtn"><button>Start Quiz</button></Link>
+        <Link to="/quiz"><button>Start Random Quiz</button></Link>
     </div>
   )
 }
