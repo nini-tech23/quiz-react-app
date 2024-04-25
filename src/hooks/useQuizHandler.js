@@ -5,12 +5,14 @@ import { showErrorToast } from "../utils/toasNotif";
 import { quizAPI, userAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
 import { useUserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = "" }) => {
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const {user} = useUserContext();
+    const navigate = useNavigate();
     // fetch quiz data here
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -58,6 +60,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
             const response = await userAPI.post("/submit-result", quizData);
             if(response.status === 200){
                 console.log(response.data._id)
+                navigate(`/quizresults/${response.data._id}`)
             }else {
                 showErrorToast('Failed to submit quiz results');
             }

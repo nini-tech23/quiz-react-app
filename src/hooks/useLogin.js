@@ -6,7 +6,7 @@ import { useUserContext } from "../contexts/UserContext";
 // import useLogout from "../hooks/useLogout";
 const useLogin = () => {
     const navigate = useNavigate();
-    const {setUser} = useUserContext();
+    const {login} = useUserContext();
     // const {handleLogout} = useLogout();
     const [formData, setFormData] = useState({
         username: "",
@@ -24,7 +24,7 @@ const useLogin = () => {
                 const {token, userId} = response.data;
                 localStorage.setItem('token', token);
                 showSuccessToast(response.data.message);
-                setUser({token, userId});
+                login({token, userId});
                 setTimeout(() => {
                     navigate("/")
                 }, 2000);

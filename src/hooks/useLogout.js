@@ -4,10 +4,9 @@ import { useUserContext } from "../contexts/UserContext";
 
 const useLogout = () => {
     const navigate = useNavigate();
-    const {setUser} = useUserContext();
+    const {logout} = useUserContext();
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
+        logout();
         navigate('/');
     }
     return { handleLogout}
