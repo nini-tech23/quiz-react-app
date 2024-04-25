@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
+
+
 const useLogout = () => {
     const navigate = useNavigate();
-    const tokenHandler = () =>localStorage.getItem('token')
+    const {setUser} = useUserContext();
     const handleLogout = () => {
         localStorage.removeItem('token');
-        navigate('/')
-        window.location.reload();
+        setUser(null);
+        navigate('/');
     }
-    return {tokenHandler, handleLogout}
+    return { handleLogout}
 }
 
 export default useLogout

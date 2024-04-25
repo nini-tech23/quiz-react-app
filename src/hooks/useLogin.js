@@ -2,9 +2,12 @@ import {userAPI} from "../API";
 import { useState } from "react";
 import { showErrorToast, showSuccessToast } from "../utils/toasNotif";
 import { useNavigate } from "react-router-dom";
-import {default as handleLogout } from './useLogout'
-const useUserRegist = () => {
+import { useUserContext } from "../contexts/UserContext";
+// import useLogout from "../hooks/useLogout";
+const useLogin = () => {
     const navigate = useNavigate();
+    const {setUser} = useUserContext();
+    // const {handleLogout} = useLogout();
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -12,24 +15,23 @@ const useUserRegist = () => {
     const textChangeHandler =  (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
     const loginHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await userAPI.post('/login', {
-                username: formData.username,
-                password: formData.password
-            });
+            const response = await userAPI.post('/login', formData);
             if (response.status===200){
-                const {token, expiresIn} = response.data;
+                const {token} = response.data;
                 localStorage.setItem('token', token);
                 showSuccessToast(response.data.message);
+                setUser({token, username: formData.username});
                 setTimeout(() => {
                     navigate("/")
                 }, 2000);
                 //set timemout for automatic logout when token expires (1hr)
-                setTimeout(()=>{
-                    handleLogout();
-                }, expiresIn * 1000);
+                // setTimeout(()=>{
+                //     handleLogout();
+                // }, expiresIn * 1000);
             }else{
                 showErrorToast(response.data.message);
             }
@@ -42,4 +44,4 @@ const useUserRegist = () => {
     return { formData, textChangeHandler, loginHandler };
 };
 
-export default useUserRegist;
+export default useLogin;

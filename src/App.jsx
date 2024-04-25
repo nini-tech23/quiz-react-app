@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import QuizListPage from "./pages/QuizListPage";
 import RootLayoutLibrary from './components/common/RootLayoutLibrary';
+import { UserProvider } from "./contexts/UserContext";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
     },
 ])
-const App = () => <RouterProvider router={router}/>
+const App = () => (
+    <UserProvider>
+        <RouterProvider router={router}/>
+    </UserProvider>
+)
 
 export default App;
