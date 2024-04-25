@@ -16,7 +16,7 @@ const LoginForm = () => {
                         className="login-form"
                         onSubmit={(e)=>loginHandler(e)}>
                         <div className="input-icon-container">
-                            <AiOutlineUser classname="input-icon" />
+                            <AiOutlineUser className="input-icon" />
                             <input
                                 type="text"
                                 name='username'
@@ -28,7 +28,7 @@ const LoginForm = () => {
                             />
                         </div>
                         <div className="input-icon-container">
-                            <RiLockPasswordLine classname="input-icon" />
+                            <RiLockPasswordLine className="input-icon" />
                             <input
                                 type="password"
                                 name='password'
