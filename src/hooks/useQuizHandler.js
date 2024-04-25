@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import he from "he";
 import CustomConfirmAlert from "../utils/confirmDialog";
 import { showErrorToast } from "../utils/toasNotif";
-import { quizAPI } from "../API";
+import { quizAPI, userAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
+import { useUserContext } from "../contexts/UserContext";
 
 export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = "" }) => {
     const [data, setData] = useState();
@@ -12,6 +13,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [correctAnswersCheck, setCorrectAnswersCheck] = useState([]);
     const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
+    const {user} = useUserContext();
     // fetch quiz data here
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -40,6 +42,33 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
         };
         fetchQuizData();
     }, [amount, type, difficulty, category]);
+    const submitQuizResults = async () => {
+        const quizData = {
+            userId: user.userId,
+            questions: data.map((question, index) => ({
+                question: question.question,
+                options: question.options,
+                correctAnswer: question.correct_answer,
+                userAnswer: selectedAnswers[index],
+                isCorrect: correctAnswersCheck[index],
+            })),
+            type,
+            difficulty,
+            category,
+            totalQuestions: data.length,
+        };
+        console.log(quizData)
+        try {
+            const response = await userAPI.post("/submit-result", quizData);
+            if(response.status === 200){
+                console.log(response.data._id)
+            }else {
+                showErrorToast('Failed to submit quiz results');
+            }
+        } catch (error){
+            console.log('Error submitting quiz results:', error);
+        }
+    }
     const handleNextQuestion = () => {
         if (selectedAnswers[currentQuestionIndex] !== null) {
             if (currentQuestionIndex < data?.length - 1) {
@@ -51,6 +80,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
                     onConfirm: () => {
                         setQuizCompleted(true);
                         correctAnswerCounter();
+                        submitQuizResults();
                     },
                 });
                 confirm.submit();

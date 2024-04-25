@@ -21,10 +21,10 @@ const useLogin = () => {
         try {
             const response = await userAPI.post('/login', formData);
             if (response.status===200){
-                const {token} = response.data;
+                const {token, userId} = response.data;
                 localStorage.setItem('token', token);
                 showSuccessToast(response.data.message);
-                setUser({token, username: formData.username});
+                setUser({token, userId});
                 setTimeout(() => {
                     navigate("/")
                 }, 2000);
