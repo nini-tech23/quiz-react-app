@@ -5,43 +5,12 @@ import { useLocation } from "react-router-dom";
 const Quiz = () => {
     const location = useLocation();
     const { amount, type, difficulty, category } = location.state || {};
-    const { data, currentQuestionIndex, quizCompleted, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer, correctAnswersCheck, totalCorrectAnswers, } = useQuiz({ amount, type, difficulty, category });
+    const { data, currentQuestionIndex, handleNextQuestion, handlePrevQuestionIndex, selectedAnswers, handleSelectedAnswer,} = useQuiz({ amount, type, difficulty, category });
     if (!data ||!data.length) return <div>Loading...</div>
 
     return (
         <>
             <ToastContainer />
-            {quizCompleted ? (
-                <div className="results-container">
-                    <h1 className="result-title">Quiz Result</h1>
-                    <div className="result-info">
-                        <p>
-                            <b style={{ fontWeight: "600" }}>Total Correct Anwers: </b>
-                            {totalCorrectAnswers}
-                        </p>
-                        <p>
-                            <b style={{ fontWeight: "600" }}>Total InCorrect Anwers: </b>
-                            {data.length - totalCorrectAnswers}
-                        </p>
-                    </div>
-                    {data.map((item, index) => (
-                        <>
-                            <Question
-                                question={item.question}
-                                options= {item.options}
-                                currentQuestionNumber={index + 1}
-                                selectedAnswer={selectedAnswers[index]}
-                                quizCompleted={quizCompleted}
-                                isCorrect={correctAnswersCheck[index]}
-                            />
-                            <p className="correct-answer">
-                                <b style={{ fontWeight: "600" }}>Correct Answer: </b>
-                                {item.correct_answer}
-                            </p>
-                        </>
-                    ))}
-                </div>
-            ) : (
                 <div className="quiz-container">
                     <Question
                         question={data[currentQuestionIndex].question}
@@ -49,7 +18,6 @@ const Quiz = () => {
                         currentQuestionNumber={currentQuestionIndex + 1}
                         onAnswerSelected={handleSelectedAnswer}
                         selectedAnswer={selectedAnswers[currentQuestionIndex]}
-                        quizCompleted={quizCompleted}
                     />
                     <div className="btn-container">
                         <button
@@ -70,7 +38,6 @@ const Quiz = () => {
                         {currentQuestionIndex + 1} of {data.length} questions
                     </p>
                 </div>
-            )}
         </>
     );
 };

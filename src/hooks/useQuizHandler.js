@@ -10,9 +10,6 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
-    const [quizCompleted, setQuizCompleted] = useState(false);
-    const [correctAnswersCheck, setCorrectAnswersCheck] = useState([]);
-    const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
     const {user} = useUserContext();
     // fetch quiz data here
     useEffect(() => {
@@ -35,7 +32,6 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
                 setData(fetchedData);
 
                 setSelectedAnswers(new Array(response.data.results.length).fill(null));
-                setCorrectAnswersCheck(new Array(response.data.results.length).fill(false));
             } catch (error) {
                 console.log("Failed to fetch quiz data:", error);
             }
@@ -50,7 +46,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
                 options: question.options,
                 correctAnswer: question.correct_answer,
                 userAnswer: selectedAnswers[index],
-                isCorrect: correctAnswersCheck[index],
+                isCorrect: selectedAnswers[index] === question.correct_answer,
             })),
             type,
             difficulty,
@@ -78,8 +74,6 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
                     title: "Quiz Completion Confirm",
                     message: "Do you want to complete the quiz?",
                     onConfirm: () => {
-                        setQuizCompleted(true);
-                        correctAnswerCounter();
                         submitQuizResults();
                     },
                 });
@@ -104,26 +98,12 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
         });
     };
 
-    const correctAnswerCounter = () => {
-        let newTotalCorrectAnswers = 0;
-        const newCorrectAnswersCheck = data.map((item, index) => {
-            const isCorrect = item.correct_answer === selectedAnswers[index];
-            if (isCorrect) newTotalCorrectAnswers++;
-            return isCorrect;
-        });
-        setCorrectAnswersCheck(newCorrectAnswersCheck);
-        setTotalCorrectAnswers(newTotalCorrectAnswers);
-    };
-
     return {
         data,
         currentQuestionIndex,
-        quizCompleted,
         handleNextQuestion,
         handlePrevQuestionIndex,
         handleSelectedAnswer,
         selectedAnswers,
-        totalCorrectAnswers,
-        correctAnswersCheck,
     };
 };

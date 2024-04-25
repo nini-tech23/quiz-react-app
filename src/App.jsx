@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 import QuizListPage from "./pages/QuizListPage";
 import RootLayoutLibrary from './components/common/RootLayoutLibrary';
 import { UserProvider } from "./contexts/UserContext";
+import ResultPage from "./pages/ResultPage";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     {
         path: "/quiz",
         element: <QuizPage />,
+    },
+    {
+        path: '/result',
+        element: <ResultPage />,
     },
     {
         path: "/login",

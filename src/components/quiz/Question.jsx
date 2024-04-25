@@ -1,12 +1,4 @@
-const Question = ({ question, options, currentQuestionNumber, selectedAnswer, onAnswerSelected, quizCompleted, isCorrect }) => {
-  const getAnswerClass = (option) => {
-    if (!quizCompleted) {
-      return selectedAnswer === option ? 'answer selected' : 'answer';
-    }
-    // Display correct/incorrect classes when quiz is completed
-    return selectedAnswer === option ? (isCorrect ? 'answer correct' : 'answer incorrect') : 'answer';
-  };
-
+const Question = ({ question, options, currentQuestionNumber, selectedAnswer, onAnswerSelected }) => {
   return (
     <>
       <p className="question">
@@ -15,7 +7,7 @@ const Question = ({ question, options, currentQuestionNumber, selectedAnswer, on
       </p>
       <div className="answers-container">
         {options.map((option, index)=> (
-          <div key={index} className={getAnswerClass(option)} onClick={()=>onAnswerSelected(option)}>
+          <div key={index} className={selectedAnswer===option? 'answer selected' : 'answer'} onClick={()=>onAnswerSelected(option)}>
             {option}
           </div>
         ))}
