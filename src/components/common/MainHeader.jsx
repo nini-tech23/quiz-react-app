@@ -2,9 +2,8 @@ import {Link} from 'react-router-dom';
 import {MdAccountCircle} from 'react-icons/md';
 import useLogout from '../../hooks/useLogout';
 import quizletLogo from '../../assets/quizlet-logo.png';
-import { useUserContext } from '../../contexts/UserContext';
 const MainHeader = () => {
-  const {user} =useUserContext();
+  const token = localStorage.getItem('token');
   const {handleLogout} = useLogout();
   return (
     <>
@@ -19,7 +18,7 @@ const MainHeader = () => {
             <Link to='/library' className='nav-item'>Library</Link>
             <Link to='/quiz' className='nav-item'>About</Link>
         </div>
-        {user ? (
+        {token ? (
           <div className="profile-container">
               <Link to='/profile' className='profile-link'><MdAccountCircle className='user-icon'/></Link>
               <button onClick={handleLogout} className='logout-btn'>Logout</button>
