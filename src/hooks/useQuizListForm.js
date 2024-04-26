@@ -21,11 +21,15 @@ const useQuizListForm = () => {
             setCategory(value);
         }
     };
+    const getCategoryNameById = (id) => {
+        const category = allCategories.find((cat) => cat.id === id);
+        return category ? category.name : "";
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
         const confirm = CustomConfirmAlert({
             title: "Want to take a quiz?",
-            message: `Difficulty: ${difficulty}, Question Type: ${questionType}, Number of Questions: ${numQuestions}, category: ${category}`,
+            message: `Difficulty: ${difficulty}, Question Type: ${questionType}, Number of Questions: ${numQuestions}, category: ${getCategoryNameById(Number(category))}`,
             onConfirm: () => {
                 console.log({ difficulty, questionType, numQuestions, category });
                 navigate("/quiz", { state: { difficulty: difficulty, type: questionType, amount: numQuestions, category: category } });

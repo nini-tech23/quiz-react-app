@@ -6,13 +6,18 @@ import { quizAPI, userAPI } from "../API";
 import shuffleArray from "../utils/shuffleArray";
 import { useUserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
-
+import categoryMapping from '../categoryMapping'
 export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", category = "" }) => {
     const [data, setData] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const {user} = useUserContext();
     const navigate = useNavigate();
+    const allCategories = Object.values(categoryMapping).flat();
+    const getCategoryNameById = (id) => {
+        const category = allCategories.find((cat) => cat.id === id);
+        return category ? category.name : "";
+    }
     // fetch quiz data here
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -52,7 +57,7 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
             })),
             type,
             difficulty,
-            category,
+            category: getCategoryNameById(Number(category)),
             totalQuestions: data.length,
         };
         console.log(quizData)
