@@ -6,10 +6,12 @@ const ResultQuestion = ({ question, options, currentQuestionNumber, selectedAnsw
                 {question}
             </p>
             <div className="answers-container">
-                {options.map((option, index)=> (
-                <div key={index} className={selectedAnswer===option && isCorrect ? 'answer correct' : 'answer incorrect'}>
-                    {option}
-                </div>
+                {options.map((option, index) => (
+                    <div
+                        key={index}
+                        className={selectedAnswer === option ? (isCorrect ? "answer correct" : "answer incorrect") : "answer"}>
+                        {option}
+                    </div>
                 ))}
             </div>
         </>

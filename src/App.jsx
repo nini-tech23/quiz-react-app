@@ -5,7 +5,8 @@ import RootLayout from "./components/common/RootLayout";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import QuizListPage from "./pages/QuizListPage";
-import RootLayoutLibrary from './components/common/RootLayoutLibrary';
+import RootLayoutLibrary from "./components/common/RootLayoutLibrary";
+import UserAccountPage from "./pages/UserAccountPage";
 import { UserProvider } from "./contexts/UserContext";
 import ResultPage from "./pages/ResultPage";
 const router = createBrowserRouter([
@@ -17,7 +18,6 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <HomePage />,
             },
-
         ],
     },
     {
@@ -26,17 +26,20 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/library",
-                element: <QuizListPage/>,
+                element: <QuizListPage />,
             },
-
         ],
+    },
+    {
+        path: "/user",
+        element: <UserAccountPage />,
     },
     {
         path: "/quiz",
         element: <QuizPage />,
     },
     {
-        path: '/result',
+        path: "/quizresults/:resultId",
         element: <ResultPage />,
     },
     {
@@ -47,11 +50,11 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUpPage />,
     },
-])
+]);
 const App = () => (
     <UserProvider>
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
     </UserProvider>
-)
+);
 
 export default App;

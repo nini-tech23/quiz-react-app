@@ -64,8 +64,8 @@ export const useQuiz = ({ amount = 10, type = "multiple", difficulty = "", categ
         try {
             const response = await userAPI.post("/submit-result", quizData);
             if(response.status === 200){
-                console.log(response.data._id)
-                navigate(`/quizresults/${response.data._id}`)
+                console.log(response.data.resultId)
+                navigate(`/quizresults/${response.data.resultId}`)
             }else {
                 showErrorToast('Failed to submit quiz results');
             }

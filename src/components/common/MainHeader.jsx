@@ -20,7 +20,7 @@ const MainHeader = () => {
         </div>
         {token ? (
           <div className="profile-container">
-              <Link to='/profile' className='profile-link'><MdAccountCircle className='user-icon'/></Link>
+              <Link to='/user' className='profile-link'><MdAccountCircle className='user-icon'/></Link>
               <button onClick={handleLogout} className='logout-btn'>Logout</button>
           </div>
         ) : (
