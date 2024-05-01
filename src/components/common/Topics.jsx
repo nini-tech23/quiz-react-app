@@ -1,56 +1,66 @@
-import {Link} from 'react-router-dom';
-import { BsBookFill } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
+import { BsBookFill, BsGlobeAmericas } from "react-icons/bs";
 import { RiMovie2Fill } from "react-icons/ri";
-import { MdOutlineHistoryEdu } from "react-icons/md";
-import { MdOutlineSportsGymnastics } from "react-icons/md";
-import { BsGlobeAmericas } from "react-icons/bs";
-import { MdScience } from "react-icons/md";
-import { FaLaptop } from "react-icons/fa";
-import { FaMusic } from "react-icons/fa";
+import { MdOutlineHistoryEdu, MdOutlineSportsGymnastics, MdScience } from "react-icons/md";
+import { FaLaptop, FaMusic } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
+
 const Topics = () => {
+    const navigate = useNavigate();
+
+    const handleTopicClick = (category, type = "multiple", difficulty = "", numQuestions = 10) => {
+        navigate("/quiz", { 
+            state: { 
+                difficulty: difficulty, 
+                type: type, 
+                amount: numQuestions, 
+                category: category 
+            }
+        });
+    };
+
     return (
         <div className="topics">
             <h2>WHAT TOPIC ARE YOU INTERESTED IN?</h2>
             <div className="topicscontainer">
-                <Link to='/quiz' className="topic">
+                <div onClick={() => handleTopicClick(9)} className="topic">
                     <BsBookFill className='topicicon'/>
                     <p>General</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(11)} className="topic">
                     <RiMovie2Fill className='topicicon'/>
                     <p>Movie</p>
-                </Link>
-                <Link to='/quiz' className="topic">
-                    < FaMusic className='topicicon'/>
+                </div>
+                <div onClick={() => handleTopicClick(12)} className="topic">
+                    <FaMusic className='topicicon'/>
                     <p>Music</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(10)} className="topic">
                     <ImBooks className='topicicon'/>
                     <p>Literature</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(21)} className="topic">
                     <MdOutlineSportsGymnastics className='topicicon'/>
                     <p>Sports</p>
-                </Link>        
+                </div>
             </div>
-            <div className="topicscontainer">
-                <Link to='/quiz' className="topic">
+            <div className="topicscontainer">        
+                <div onClick={() => handleTopicClick(17)} className="topic">
                     <MdScience className='topicicon'/>
                     <p>Science</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(18)} className="topic">
                     <FaLaptop className='topicicon'/>
                     <p>Computers</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(23)} className="topic">
                     <MdOutlineHistoryEdu className='topicicon'/>
                     <p>History</p>
-                </Link>
-                <Link to='/quiz' className="topic">
+                </div>
+                <div onClick={() => handleTopicClick(22)} className="topic">
                     <BsGlobeAmericas className='topicicon'/>
                     <p>Geography</p>
-                </Link>
+                </div>
             </div>
         </div>
     );
