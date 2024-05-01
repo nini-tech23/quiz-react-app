@@ -4,7 +4,7 @@ const QuizResultListItem = ({index, category, type, difficulty, totalQuestions, 
     return (
         <div className="resultslist-item">
             <p>
-                Quiz {index+1}
+                Quiz {index}
             </p>
             <p>
                 {category}

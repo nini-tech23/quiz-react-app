@@ -12,7 +12,7 @@ const QuizResultsList = () => {
                 <h6>Total Questions</h6>
                 <h6>Score</h6>
             </div>
-            {results.map((result, index) => <QuizResultListItem key={index} index={index} category={result.category} type={result.type} difficulty={result.difficulty} totalQuestions={result.totalQuestions} score={result.score} id={result._id}/>) }
+            {results.map((result, index) => <QuizResultListItem key={index} index={results.length-index} category={result.category} type={result.type} difficulty={result.difficulty} totalQuestions={result.totalQuestions} score={result.score} id={result._id}/>) }
         </div>
     )
 }
