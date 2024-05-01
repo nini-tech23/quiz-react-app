@@ -9,6 +9,7 @@ import RootLayoutLibrary from "./components/common/RootLayoutLibrary";
 import UserAccountPage from "./pages/UserAccountPage";
 import { UserProvider } from "./contexts/UserContext";
 import ResultPage from "./pages/ResultPage";
+import AboutPage from './pages/AboutPage';
 const router = createBrowserRouter([
     {
         path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: "/library",
                 element: <QuizListPage />,
+            },
+            {
+                path: "/about",
+                element: <AboutPage />,
             },
         ],
     },

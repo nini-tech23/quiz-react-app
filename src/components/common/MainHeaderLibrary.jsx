@@ -31,7 +31,7 @@ const MainHeaderLibrary = () => {
                         Library
                     </Link>
                     <Link
-                        to="/quiz"
+                        to="/about"
                         className="nav-item-alt">
                         About
                     </Link>

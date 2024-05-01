@@ -16,7 +16,7 @@ const MainHeader = () => {
         <div className='nav-container'>
             <Link to='/' className='nav-item'>Home</Link>
             <Link to='/library' className='nav-item'>Library</Link>
-            <Link to='/quiz' className='nav-item'>About</Link>
+            <Link to='/about' className='nav-item'>About</Link>
         </div>
         {token ? (
           <div className="profile-container">
